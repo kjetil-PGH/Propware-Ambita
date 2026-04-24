@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elektronisk tinglysing | Propware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2340;
+    --navy-900: #081a30;
+    --navy-700: #1a3658;
+    --green: #2ecc71;
+    --green-600: #27b866;
+    --green-50: #e8f8ef;
+    --mint-bg: #e8f2ed;
+    --mint-soft: #d9ece4;
+    --ink: #0b2340;
+    --ink-soft: #4a5a6e;
+    --ink-muted: #6b7a8f;
+    --paper: #ffffff;
+    --rule: #e3ebe6;
+    --rule-dark: #c9d6ce;
+    --red-arrow: #d9534f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo-svg { height: 22px; width: auto; display: block; }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-right a:not(.btn-sm) {
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .nav-right a:not(.btn-sm):hover { color: var(--green-600); }
+
+  .btn-sm {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--navy);
+    color: var(--paper) !important;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.88rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+
+  .btn-sm:hover { background: var(--navy-900); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--mint-bg);
+    padding: 5rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(46, 204, 113, 0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.028em;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    max-width: 680px;
+  }
+
+  .hero p.lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--navy);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.97rem;
+    border-radius: 6px;
+    transition: background 0.15s, transform 0.15s;
+    letter-spacing: -0.01em;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: var(--navy-900);
+    transform: translateY(-1px);
+  }
+
+  .btn svg { width: 14px; height: 14px; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    padding: calc(0.8rem - 1.5px) calc(1.5rem - 1.5px);
+  }
+
+  .btn-ghost:hover {
+    background: var(--navy);
+    color: var(--paper);
+  }
+
+  /* ---------- Content ---------- */
+  main { padding: 4.5rem 0 2rem; }
+
+  h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.018em;
+  }
+
+  .intro-text {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-bottom: 3.5rem;
+    max-width: 640px;
+  }
+
+  /* ---------- Steps ---------- */
+  .step {
+    padding: 2.75rem 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+  }
+
+  .step:last-of-type { border-bottom: 1px solid var(--rule); }
+
+  .step-num {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--green-600);
+    letter-spacing: 0.12em;
+    padding-top: 0.35rem;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .step-num::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--green);
+    opacity: 0.4;
+  }
+
+  .step h2 { margin-bottom: 1rem; }
+
+  .step p {
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .step p:last-child { margin-bottom: 0; }
+
+  .step strong { color: var(--navy); font-weight: 600; }
+
+  .step ul {
+    list-style: none;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .step ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink-soft);
+  }
+
+  .step ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 8px;
+    height: 2px;
+    background: var(--green);
+  }
+
+  .step a {
+    color: var(--navy);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--green);
+    padding-bottom: 1px;
+    transition: color 0.15s;
+  }
+
+  .step a:hover { color: var(--green-600); }
+
+  /* ---------- Mockup figures ---------- */
+  .mockup {
+    margin-top: 1.75rem;
+    background: var(--paper);
+    border: 1px solid var(--rule-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 2px rgba(11, 35, 64, 0.04), 0 4px 20px rgba(11, 35, 64, 0.04);
+  }
+
+  .mockup-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .mockup-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .form-section-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--mint-soft);
+    padding: 0.45rem 0.7rem;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.88rem;
+    border-bottom: 1px dashed var(--rule);
+    align-items: center;
+  }
+
+  .form-row:last-child { border-bottom: none; }
+
+  .form-label {
+    color: var(--ink-soft);
+  }
+
+  .form-value {
+    height: 18px;
+    background: var(--mint-bg);
+    border-radius: 3px;
+  }
+
+  .form-highlight-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .form-highlight-row .form-label { width: 180px; color: var(--ink-soft); font-size: 0.88rem; }
+
+  .form-highlight-value {
+    flex: 1;
+    color: var(--navy);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.25rem 0.55rem;
+    background: var(--green-50);
+    border-radius: 3px;
+    border-left: 2px solid var(--green);
+  }
+
+  .arrow {
+    color: var(--red-arrow);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-left: 0.4rem;
+  }
+
+  /* Altinn mockup */
+  .altinn-box p.title-line {
+    font-size: 0.95rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .altinn-box p.sub-line {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+
+  .altinn-tilgang {
+    border: 1px solid var(--rule);
+    padding: 0.75rem 0.9rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background: var(--paper);
+  }
+
+  .altinn-tilgang .tag {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+
+  .altinn-tilgang .main {
+    font-size: 0.92rem;
+    color: var(--navy);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .altinn-tilgang .main .box-icon {
+    width: 16px; height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-600);
+  }
+
+  .altinn-tilgang .sub {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 0.15rem;
+    padding-left: 1.4rem;
+  }
+
+  .altinn-fine {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+  }
+
+  .altinn-buttons {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .altinn-btn-primary {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 0.55rem 1.1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .altinn-btn-link {
+    color: var(--navy);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* ---------- Picker-seksjon ---------- */
+  .picker-section {
+    background: var(--paper);
+    padding: 4.5rem 0 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .picker-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .picker-label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  .picker-heading {
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 1.85rem);
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+
+  .picker-sub {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin-bottom: 2.25rem;
+  }
+
+  /* ---------- Variant-valg (kort) ---------- */
+  .variant-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 720px;
+  }
+
+  .variant-card {
+    background: var(--paper);
+    border: 1.5px solid var(--rule-dark);
+    border-radius: 12px;
+    padding: 1.5rem 1.6rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .variant-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--navy);
+    box-shadow: 0 10px 28px rgba(11, 35, 64, 0.08);
+  }
+
+  .variant-card[aria-pressed="true"] {
+    border-color: var(--green);
+    background: var(--paper);
+    box-shadow: 0 10px 28px rgba(46, 204, 113, 0.12);
+  }
+
+  .variant-card .card-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .variant-card .card-eyebrow .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rule-dark);
+    transition: background 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+  }
+
+  .variant-card[aria-pressed="true"] .card-eyebrow .dot {
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.18);
+  }
+
+  .variant-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.015em;
+  }
+
+  .variant-card .card-desc {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .variant-card .card-meta {
+    margin-top: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .variant-card[aria-pressed="true"] .card-meta {
+    color: var(--green-600);
+    font-weight: 600;
+  }
+
+  /* Variant-styring: hvilken innholdsversjon vises */
+  body[data-variant="ny"] .ambita-only { display: none; }
+  body[data-variant="ambita"] .ny-only { display: none; }
+
+  /* Eksempeltekst-boks (Ambita steg 2) */
+  .example-email {
+    margin-top: 1.25rem;
+    background: var(--paper);
+    border: 1px solid var(--rule-dark);
+    border-left: 3px solid var(--green);
+    border-radius: 8px;
+    padding: 1.25rem 1.4rem;
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  .example-email .email-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+
+  .example-email .email-subject {
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .example-email .email-subject .muted {
+    color: var(--ink-muted);
+    font-weight: 400;
+    margin-right: 0.4rem;
+  }
+
+  .example-email .email-body {
+    color: var(--ink-soft);
+  }
+
+  .example-email .email-body p {
+    margin-bottom: 0.7rem !important;
+    color: var(--ink-soft) !important;
+    font-size: 0.93rem !important;
+  }
+
+  .example-email .email-body p:last-child { margin-bottom: 0 !important; }
+
+  .example-email .placeholder {
+    background: var(--mint-soft);
+    padding: 0.08rem 0.35rem;
+    border-radius: 3px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+
+  .cta {
+    background: var(--mint-bg);
+    color: var(--navy);
+    padding: 6rem 0 5rem;
+    text-align: center;
+    margin-top: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Dekorative sirkler (som Propware-forsiden) */
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -180px;
+    left: -120px;
+    width: 500px;
+    height: 500px;
+    border: 1.5px solid rgba(46, 204, 113, 0.22);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta::after {
+    content: '';
+    position: absolute;
+    bottom: -220px;
+    right: -150px;
+    width: 480px;
+    height: 480px;
+    border: 1.5px solid rgba(46, 204, 113, 0.22);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-inner { position: relative; z-index: 1; }
+
+  .cta h2 {
+    color: var(--navy);
+    font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cta p {
+    color: var(--ink-soft);
+    margin-bottom: 2.25rem;
+    font-size: 1.1rem;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.55;
+  }
+
+  .cta .btn-pill {
+    display: inline-block;
+    background: var(--green);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 1rem 2.25rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s;
+    letter-spacing: -0.01em;
+  }
+
+  .cta .btn-pill:hover {
+    background: var(--green-600);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- Kontakt-strip + Footer ---------- */
+  .contact-strip {
+    background: var(--mint-bg);
+    padding: 2rem 0 3.5rem;
+  }
+
+  .contact-strip-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    flex-wrap: wrap;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .contact-strip a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-strip a:hover { color: var(--green-600); }
+
+  .contact-strip .contact-left p,
+  .contact-strip .contact-right p {
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-strip .contact-right { text-align: right; }
+
+  footer {
+    padding: 1.5rem 0 2rem;
+    background: var(--mint-bg);
+    color: var(--ink-muted);
+    font-size: 0.8rem;
+    text-align: center;
+    border-top: 1px solid rgba(11, 35, 64, 0.08);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    .step { grid-template-columns: 1fr; gap: 0.75rem; }
+    .step-num::after { max-width: 40px; }
+    .hero { padding: 3.5rem 0 3.5rem; }
+    main { padding: 3rem 0 1rem; }
+    .form-row { grid-template-columns: 1fr; gap: 0.2rem; padding: 0.5rem 0.5rem; }
+    .form-value { height: 14px; max-width: 60%; }
+    .form-highlight-row { flex-wrap: wrap; }
+    .form-highlight-row .form-label { width: 100%; }
+    .nav-right a:not(.btn-sm) { display: none; }
+    .cta h2 { font-size: 1.5rem; }
+    .contact-strip-inner { flex-direction: column; align-items: flex-start; }
+    .contact-strip .contact-right { text-align: left; }
+    .picker-section { padding: 3rem 0 2.5rem; }
+    .variant-picker { grid-template-columns: 1fr; gap: 0.7rem; }
+    .variant-card { padding: 1.1rem 1.2rem; }
+  }
+</style>
+</head>
+<body data-variant="ny">
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo-link" aria-label="Propware forside">
+      <svg class="logo-svg" viewBox="0 0 1254 285" xmlns="http://www.w3.org/2000/svg" fill="currentColor" style="color: #0b2340;">
+        <path d="M262.396 76.9601C258.101 79.2795 253.62 83.4745 249.067 89.4449V78.1341H212.615V233.592H252.102V146.399C252.102 123.463 262.554 111.966 284.044 111.265L285.433 111.222V72.9512H284.001C274.609 72.9512 267.35 74.3114 262.396 76.9744V76.9601Z"/>
+        <path d="M368.69 72.879H365.054L365.154 72.9792C343.764 73.7953 325.237 81.9562 310.003 97.2615C293.925 113.412 285.764 133.17 285.764 155.991C285.764 178.813 293.739 197.813 310.161 214.177C326.339 230.327 346.054 238.517 368.733 238.517C391.412 238.517 412.172 230.242 427.578 214.564C443.198 198.686 451.115 178.77 451.115 155.404C451.115 132.038 443.269 113.111 427.134 96.9322C411.227 80.9683 391.569 72.879 368.704 72.879H368.69ZM337.865 123.405C346.155 114.056 356.549 109.331 368.747 109.331C380.946 109.331 390.882 113.984 399.215 123.548C407.476 133.041 411.671 144.051 411.671 156.292C411.671 168.534 407.777 178.914 400.088 187.805L400.045 187.776L399.329 188.564C391.197 197.541 380.917 202.094 368.733 202.094C356.549 202.094 345.596 197.412 337.578 188.564C329.432 179.558 325.294 168.591 325.294 155.991C325.294 143.392 329.289 133.055 337.879 123.419L337.865 123.405Z"/>
+        <path d="M548.733 72.8512H547.301V72.9228C527.944 73.2521 512.066 80.3822 500.025 94.1412V78.1343H463.573V284.419H503.06V220.836C509.675 226.749 516.261 231.116 522.69 233.85C529.863 236.929 538.625 238.489 548.719 238.489C570.896 238.489 589.652 230.142 604.442 213.677C619.218 197.241 626.706 177.54 626.706 155.119C626.706 132.698 619.26 113.183 604.585 97.1049C589.867 81.0121 571.068 72.8512 548.719 72.8512H548.733ZM587.232 155.735C587.232 167.475 583.367 178.013 575.75 187.075L574.791 188.164C566.572 197.427 556.235 202.123 544.065 202.123C538.253 202.123 532.44 200.691 526.756 197.842C518.452 194.134 511.994 188.493 507.585 181.076C503.146 173.617 500.884 165.07 500.884 155.692C500.884 143.092 505.065 132.082 513.312 122.976C521.53 113.899 532.067 109.289 544.61 109.289C557.152 109.289 566.572 113.727 574.934 123.248C583.095 132.555 587.232 143.479 587.232 155.72V155.735Z"/>
+        <path d="M797.038 78.1327L769.821 168.447L745.796 78.1327H714.398L690.101 168.504L663.128 78.1327H620.934L677.044 233.591H701.684L729.804 137.349L757.651 233.591H782.32L839.26 78.1327H797.038Z"/>
+        <path d="M960.226 95.3278C959.281 94.2397 958.078 92.9511 956.575 91.4335C943.159 79.1348 927.639 72.9068 910.444 72.9068C887.937 72.9068 869.095 80.9818 854.463 96.8884C839.859 112.766 832.457 132.295 832.457 154.903C832.457 177.51 839.473 197.511 853.318 213.847C867.206 230.241 885.689 238.545 908.254 238.545C917.975 238.545 928.04 236.283 938.148 231.83C946.982 227.936 954.398 222.925 960.226 216.897V233.591H996.678V78.1326H960.226V95.3278ZM947.097 122.574C955.071 131.408 959.123 142.475 959.123 155.432C959.123 168.39 955.071 179.557 947.082 188.563L946.724 188.964V188.992C938.821 197.697 928.47 202.121 915.942 202.121C903.414 202.121 893.134 197.769 884.615 188.82C876.211 179.972 871.945 169.12 871.945 156.535C871.945 143.95 876.24 132.209 884.386 123.118C892.59 113.94 903.214 109.302 915.942 109.302C928.67 109.302 939.165 113.769 947.097 122.574Z"/>
+        <path d="M1066.18 76.9601C1061.88 79.2795 1057.4 83.4745 1052.85 89.4449V78.1341H1016.39V233.592H1055.88V146.399C1055.88 123.463 1066.33 111.966 1087.82 111.265L1089.21 111.222V72.9512H1087.78C1078.39 72.9512 1071.13 74.3114 1066.18 76.9744V76.9601Z"/>
+        <path d="M1230.22 96.4472C1214.8 80.8555 1195.56 72.938 1173.02 72.938C1150.49 72.938 1129.9 81.3137 1114.58 97.1631C1099.05 113.227 1091.17 133.128 1091.17 156.323C1091.17 179.517 1098.92 198.788 1114.85 214.795C1130.57 230.587 1150.23 238.59 1173.28 238.59C1189.85 238.59 1205.41 233.465 1219.54 223.357C1233.7 213.22 1243.42 200.162 1248.42 184.542L1249.02 182.667H1207.66L1207.24 183.411C1200.28 196.053 1189.17 202.196 1173.24 202.196C1157.3 202.196 1145.88 195.753 1137.24 182.495C1135.21 179.445 1133.75 176.496 1132.92 173.718H1250.9L1251.15 172.601C1252.57 166.388 1253.32 160.36 1253.37 154.647L1253.46 154.59V153.817C1253.46 131.353 1245.63 112.053 1230.19 96.4615L1230.22 96.4472ZM1212.9 141.375H1131.9C1134.51 131.582 1139.33 123.808 1146.26 118.21C1153.59 112.297 1162.69 109.304 1173.31 109.304C1183.93 109.304 1193.12 112.297 1200.07 118.181C1206.64 123.736 1210.95 131.525 1212.9 141.361V141.375Z"/>
+        <path d="M168.001 10.5571L157.22 3.98537L159.167 5.88959C139.495 -2.82971 117.189 -1.88476 97.803 8.83897C75.4106 21.2235 61.4941 44.747 61.4941 70.232V122.018L99.4352 106.684V70.232C99.4352 58.3342 105.706 47.768 116.201 41.9838C120.954 39.3494 126.237 37.9606 131.492 37.9606C137.262 37.9606 143.003 39.6357 148.114 42.7999C158.208 48.9563 163.677 59.8376 162.718 71.9071C161.745 84.2487 154.443 94.4284 143.204 99.1102L31.6996 144.024C13.8171 151.097 1.73326 167.476 0.172663 186.747C-1.38793 205.889 7.71793 223.715 23.9396 233.264C31.7282 238.018 40.5907 240.538 49.5677 240.538C58.5447 240.538 66.4766 238.333 74.3941 233.808C90.4153 224.631 100.151 207.565 99.7788 189.31L99.5784 167.519L61.7661 182.738L61.8377 189.825C61.9236 194.45 59.5469 198.602 55.4808 200.936C53.2186 202.224 48.6371 203.928 43.4112 200.749C37.9277 197.499 37.7558 192.016 37.942 189.825C38.0995 187.978 39.1303 181.736 45.7306 179.202L45.9597 179.102C46.0743 179.059 46.1888 179.016 46.289 178.973L157.048 134.36C157.048 134.36 157.378 134.231 157.435 134.202C181.889 124.123 198.383 101.401 200.473 74.8851C202.535 48.6986 190.079 24.0584 167.987 10.5714L168.001 10.5571Z"/>
+      </svg>
+    </a>
+    <div class="nav-right">
+      <a href="#steg">Slik kommer du i gang</a>
+      <a href="mailto:post@propware.no" class="btn-sm">Spørsmål?</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">Elektronisk tinglysing</p>
+    <h1 class="ny-only">Fra papir til digital flyt — i tre steg.</h1>
+    <h1 class="ambita-only">Bytte fra Ambita — i fire steg.</h1>
+    <p class="lead ny-only">Koble virksomheten din til Kartverket og bankene, og motta pantedokumenter direkte i Propware. Vi guider dere hele veien.</p>
+    <p class="lead ambita-only">Vi guider advokatfirmaet gjennom overgangen fra Ambita til Propware — fra nytt virksomhetssertifikat til oppsigelse av gammelt kundeforhold.</p>
+  </div>
+</section>
+
+<section class="picker-section" id="velg">
+  <div class="container">
+    <p class="picker-label">Velg din situasjon</p>
+    <h2 class="picker-heading">Hvor starter dere fra?</h2>
+    <p class="picker-sub">Hvilken guide som passer best, avhenger av om virksomheten tar i bruk elektronisk tinglysing for første gang, eller kommer fra en annen leverandør.</p>
+
+    <div class="variant-picker" role="group" aria-label="Velg din situasjon">
+      <button type="button" class="variant-card" data-variant="ny" aria-pressed="true">
+        <span class="card-eyebrow"><span class="dot"></span>Ny kunde</span>
+        <span class="card-title">Vi er nye på e-tinglysing</span>
+        <span class="card-desc">Virksomheten har ikke tatt i bruk elektronisk tinglysing før.</span>
+        <span class="card-meta">3 steg</span>
+      </button>
+      <button type="button" class="variant-card" data-variant="ambita" aria-pressed="false">
+        <span class="card-eyebrow"><span class="dot"></span>Fra Ambita</span>
+        <span class="card-title">Vi bytter fra Ambita</span>
+        <span class="card-desc">Advokatfirmaet bruker Ambita i dag og skal over til Propware.</span>
+        <span class="card-meta">4 steg</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <p class="intro-text ny-only">For å ta i bruk elektronisk tinglysing og motta elektroniske pantedokumenter fra bank, må tre ting på plass: et <strong>virksomhetssertifikat</strong>, en <strong>avtale med Kartverket</strong>, og <strong>delegering av rettigheter</strong> i Altinn.</p>
+
+    <p class="intro-text ambita-only">Ved overgang fra Ambita er det fire korte steg å gå gjennom: bestille nytt <strong>virksomhetssertifikat</strong>, <strong>informere Kartverket</strong> om leverandørbyttet, <strong>delegere rettigheter</strong> i Altinn, og til slutt <strong>si opp avtalen</strong> med Ambita.</p>
+
+    <div id="steg">
+
+      <!-- STEG 1 -->
+      <div class="step">
+        <div class="step-num">STEG 01</div>
+        <div>
+          <h2>Bestill virksomhetssertifikat</h2>
+          <p>Vi oppretter et kundeforhold mellom dere og Alice &amp; Bob AS, som er vår BankID-leverandør og formidler av virksomhetssertifikater.</p>
+          <p>For å gjennomføre bestillingen trenger vi:</p>
+          <ul>
+            <li>Navn på virksomhetens hovedbank</li>
+            <li>Navn, telefonnummer og e-post på signaturberettigede</li>
+          </ul>
+          <p>Informasjonen sendes til <a href="mailto:post@propware.no">post@propware.no</a>. Deretter sendes avtalen fra Stø (BankID) ut til signering. Etter signering bestilles og utstedes sertifikatet av deres bank, og aktiveres av Alice &amp; Bob AS.</p>
+        </div>
+      </div>
+
+      <!-- STEG 2: Ny kunde -->
+      <div class="step ny-only">
+        <div class="step-num">STEG 02</div>
+        <div>
+          <h2>Inngå avtale med Kartverket</h2>
+          <p>Dere fyller ut en avtale med Kartverket og sender den inn via <a href="https://www.kartverket.no" target="_blank" rel="noopener">kartverket.no</a>.</p>
+          <p>I avtalens punkt <strong>12. Brukerinformasjon og kontaktpersoner</strong> føres Propware AS opp som kontraktsmedhjelper:</p>
+
+          <div class="mockup" aria-label="Utdrag fra Kartverket-avtalen">
+            <div class="mockup-label">Utdrag fra avtalen</div>
+            <div class="mockup-title">12. Brukerinformasjon og kontaktpersoner</div>
+            <div class="form-section-title">Brukerinformasjon</div>
+            <div class="form-row">
+              <span class="form-label">Navn på virksomhet:</span>
+              <span class="form-value"></span>
+            </div>
+            <div class="form-row">
+              <span class="form-label">Organisasjonsnummer:</span>
+              <span class="form-value"></span>
+            </div>
+            <div class="form-row">
+              <span class="form-label">Postadresse:</span>
+              <span class="form-value"></span>
+            </div>
+            <div class="form-row">
+              <span class="form-label">Postnummer og -sted:</span>
+              <span class="form-value"></span>
+            </div>
+            <div class="form-section-title" style="margin-top: 0.8rem;">Eventuell kontraktsmedhjelper (jf. punkt 4.1)</div>
+            <div class="form-highlight-row">
+              <span class="form-label">Navn på virksomhet:</span>
+              <span class="form-highlight-value">Propware AS, orgnr. 928 563 588</span>
+              <span class="arrow" aria-hidden="true">←</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEG 2: Ambita-kunde -->
+      <div class="step ambita-only">
+        <div class="step-num">STEG 02</div>
+        <div>
+          <h2>Informer Kartverket om leverandørbyttet</h2>
+          <p>Når advokatfirmaet bytter leverandør av e-tinglysing og banksamhandling til Propware, må Kartverket informeres om endringen. Send en kort e-post til <a href="mailto:post@kartverket.no">post@kartverket.no</a> — bruk gjerne eksempelteksten under.</p>
+
+          <div class="example-email" aria-label="Eksempel på e-post til Kartverket">
+            <div class="email-label">Eksempel-e-post</div>
+            <div class="email-subject"><span class="muted">Emne:</span>Leverandørbytte av e-tinglysing til Propware</div>
+            <div class="email-body">
+              <p>Hei,</p>
+              <p><span class="placeholder">[Advokatfirma]</span> ønsker å melde fra om skifte av leverandør for e-tinglysing. Ny formidler av e-tinglysing til Kartverket er Propware AS, orgnr. 928 563 588.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEG 3 -->
+      <div class="step">
+        <div class="step-num">STEG 03</div>
+        <div>
+          <h2>Deleger rettigheter i Altinn</h2>
+          <p>Når sertifikatet er aktivert, oppretter vi en forespørsel i Altinn om å få delegert nødvendige rettigheter til Propware. Signaturberettigede mottar en e-post fra oss med lenke for godkjenning.</p>
+          <p>Det er tilstrekkelig at én person gjennomfører godkjenningen. Delegeringen gjelder tjenesten <strong>DSVE</strong> (digital samhandling ved eiendomshandel). Vi får automatisk bekreftelse fra Altinn, og aktiverer deretter banksamhandling i Propware.</p>
+
+          <div class="mockup altinn-box" aria-label="Godkjenningsside i Altinn">
+            <div class="mockup-label">Slik ser det ut i Altinn</div>
+            <div class="mockup-title" style="text-transform: none; font-size: 1.1rem; letter-spacing: -0.01em;">Gi tilgang til system</div>
+            <p class="title-line">Propware (928563588) ber om godkjenning til å lage en systemtilgang</p>
+            <p class="sub-line">Gjennom systemtilgangen kan Propware løse oppgaver på vegne av «virksomhetens navn».</p>
+            <p style="font-size: 0.8rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem;">Systemtilgangen vil få denne fullmakten:</p>
+            <p style="font-size: 0.75rem; color: var(--ink-muted); margin-bottom: 0.5rem;">1 tilgangspakke</p>
+            <div class="altinn-tilgang">
+              <div class="main">
+                <span class="box-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v8l6 3 6-3V4L8 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 4l6 3 6-3M8 7v8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </span>
+                Kjøp og salg av eiendom
+              </div>
+              <div class="sub">1 tjeneste</div>
+            </div>
+            <p class="altinn-fine">Du kan når som helst trekke tilbake godkjenningen på altinn.no.</p>
+            <div class="altinn-buttons">
+              <span class="altinn-btn-primary">Godkjenn systemtilgang</span>
+              <span class="altinn-btn-link">Avvis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEG 4: Ambita-kunde (avslutning) -->
+      <div class="step ambita-only">
+        <div class="step-num">STEG 04</div>
+        <div>
+          <h2>Si opp avtalen med Ambita</h2>
+          <p>Til slutt — meld fra til Ambita om oppsigelse og offboarding av kundeforholdet, slik at dere ikke lenger er tilknyttet Ambita på noen måte.</p>
+          <p>Det er viktig å få dette på plass for å unngå unødige komplikasjoner knyttet til banksamhandling under overgangen til Propware.</p>
+          <p style="color: var(--navy); font-weight: 500;">God tinglysing! 🎉</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<section class="cta">
+  <div class="container cta-inner">
+    <h2>Spørsmål underveis?</h2>
+    <p>Vi er her hvis noe blir uklart — ring eller send en e-post, så hjelper vi dere videre.</p>
+    <a href="mailto:post@propware.no" class="btn-pill">Send e-post</a>
+  </div>
+</section>
+
+<section class="contact-strip">
+  <div class="contact-strip-inner">
+    <div class="contact-left">
+      <p><a href="mailto:post@propware.no">post@propware.no</a></p>
+      <p><a href="tel:+4723905103">+47 23 90 51 03</a> <span style="color: var(--ink-muted);">(09.00 – 16.00, ukedager)</span></p>
+    </div>
+    <div class="contact-right">
+      <p>Propware AS — Hovfaret 4, 0275 Oslo</p>
+      <p>Org. nr. 928 563 588</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © Propware AS
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.variant-card[data-variant]');
+    var body = document.body;
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var variant = btn.getAttribute('data-variant');
+        body.setAttribute('data-variant', variant);
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
